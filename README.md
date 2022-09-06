@@ -1,4 +1,4 @@
-![My Groups REPO](https://github.com/anthonypz/todo-mvc-auth-local)
+[My Group's Project REPO WITH 100devs!](https://github.com/anthonypz/todo-mvc-auth-local)
 
 # Contactr
 
