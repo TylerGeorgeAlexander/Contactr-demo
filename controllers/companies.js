@@ -15,7 +15,8 @@ exports.createCompany = async (req, res) => {
     const company = await Company.create({
       userId: uniqID,
       companyName: req.body.companyName,
-      dateAdded: req.body.dateAdded,
+      // Added a default date for current date
+      dateAdded: req.body.dateAdded || new Date(),
       url: req.body.url,
       role: req.body.role,
       roleURL: req.body.roleURL,
@@ -28,18 +29,18 @@ exports.createCompany = async (req, res) => {
       },
       application: {
         // If the property value is undefined, set the value to 'no' instead
-        applied: req.body.applied || 'no',
+        applied: req.body.applied || "no",
         applyDate: req.body.applyDate,
-        coffeeChat: req.body.coffeeChat || 'no',
+        coffeeChat: req.body.coffeeChat || "no",
         coffeeChatDate: req.body.coffeeChatDate,
-        saidThanks: req.body.saidThanks || 'no',
+        saidThanks: req.body.saidThanks || "no",
         interviewDate: req.body.interviewDate,
-        followUp: req.body.followUp,
+        followUpDate: req.body.followUpDate,
       },
       comments: req.body.comments,
     });
     console.log("Company Data has been added!");
-    console.log(company)
+    console.log(company);
     res.redirect("/companies");
   } catch (err) {
     console.log(err);
@@ -73,7 +74,7 @@ exports.editCompany = async (req, res) => {
     if (company.userId != req.user.id) {
       res.redirect("/companies");
     } else {
-      res.render("companies/edit", {
+      res.render("editCompany", {
         company,
       });
     }
@@ -86,8 +87,71 @@ exports.editCompany = async (req, res) => {
 // @desc    Update company
 // @route   PUT /companies/:id
 exports.updateCompany = async (req, res) => {
+  console.log("Log of request body", req.body);
+  // Filtering falsy values of the body object to prevent overwriting existing values if null or """
+  // Front End validation should cover the pointOfContact and application objects
+  // * See js/editcompanies js for the logic inside the fetch *
+  const {
+    companyName,
+    dateAdded,
+    url,
+    role,
+    roleURL,
+    position,
+    source,
+    pointOfContact,
+    name,
+    application,
+    comments,
+  } = req.body;
+
+  let filteredBody = {};
+
+  if (companyName) {
+    filteredBody["companyName"] = companyName;
+  }
+  if (dateAdded) {
+    filteredBody["dateAdded"] = dateAdded;
+  }
+  if (url) {
+    filteredBody["url"] = url;
+  }
+  if (role) {
+    filteredBody["role"] = role;
+  }
+  if (roleURL) {
+    filteredBody["roleURL"] = roleURL;
+  }
+  if (position) {
+    filteredBody["position"] = position;
+  }
+  if (source) {
+    filteredBody["source"] = source;
+  }
+  if (JSON.stringify(pointOfContact) !== "{}") {
+    filteredBody["pointOfContact"] = pointOfContact;
+  }
+  if (name) {
+    filteredBody["pointOfContact.name"] = name;
+  }
+  if (position) {
+    filteredBody["pointOfContact.position"] = position;
+  }
+  if (email) {
+    filteredBody["pointOfContact.email"] = email;
+  }
+  if (JSON.stringify(application) !== "{}") {
+    filteredBody["application"] = application;
+  }
+
+  // The above conditionals could be refactored similar to the below comments with a ternary operator
+  // For MVP we will keep this for now
+  comments ? (filteredBody["comments"] = comments) : null;
+
+  console.log("Log of filtered body", filteredBody);
+
   try {
-    let company = await Company.findById(req.params.id).lean();
+    let company = await Company.findById(req.body.companyId).lean();
     if (!company) {
       return res.render("error/404");
     }
@@ -96,13 +160,14 @@ exports.updateCompany = async (req, res) => {
     } else {
       company = await Company.findOneAndUpdate(
         { _id: req.params.id },
-        req.body,
+        // req.body,
+        filteredBody,
         {
           new: true,
           runValidators: true,
         }
       );
-      res.redirect("/companies");
+      res.send(company);
     }
   } catch (err) {
     console.error(err);
