@@ -15,7 +15,3 @@ Contactr is a contact tracking App for job seekers that helps you create, keep t
 **Tech used:** HTML, CSS, JavaScript, Express, MongoDB, Mongoose, Passport.js, bcrypt, Bootstrap
 
 The back-end was build using Node.js and the Express framework to handle all routes and controller logic. We used EJS as our templating engine for the View, MongoDB & Mongoose for our database and Model logic, Passport.js to handle authentication, bcrypt to salt and hash user passwords, and Bootstrap to style the front-end.
-
-## Optimizations
-
-## Lessons Learned:
