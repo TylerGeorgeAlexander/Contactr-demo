@@ -1,17 +1,15 @@
-[My Group's Project REPO WITH 100devs!](https://github.com/anthonypz/todo-mvc-auth-local)
+[Explore Our Team's Project Repository with 100Devs](https://github.com/anthonypz/todo-mvc-auth-local)
 
-# Contactr
+# Contactr: Your Personal Network Tracker
 
-Contactr is a contact tracking App for job seekers that helps you create, keep track of, and grow your personal network. It is built using the MVC Architecture and implements authorization so people can sign up & add their personal list of contacts to the app.
+Contactr is a specialized app designed for job seekers, aiming to streamline the process of creating, managing, and expanding your professional network. Leveraging the MVC architecture, this application incorporates robust authorization features, allowing users to register and curate their personal contact lists within the platform.
 
-**Link to project:** [Contactr](https://contactr.onrender.com/)
+**Project Link:** [Contactr](https://contactr.onrender.com/)
 
+![Screenshot of Contactr Landing Page](https://user-images.githubusercontent.com/13573733/189439207-0b7279d9-9056-49b9-bca1-d75387616c11.png)
 
-![Image of Contactr Landing Page](https://user-images.githubusercontent.com/13573733/189439207-0b7279d9-9056-49b9-bca1-d75387616c11.png)
+## Technology Stack:
 
+**Technologies Used:** HTML, CSS, JavaScript, Express, MongoDB, Mongoose, Passport.js, bcrypt, Bootstrap
 
-## How It's Made:
-
-**Tech used:** HTML, CSS, JavaScript, Express, MongoDB, Mongoose, Passport.js, bcrypt, Bootstrap
-
-The back-end was build using Node.js and the Express framework to handle all routes and controller logic. We used EJS as our templating engine for the View, MongoDB & Mongoose for our database and Model logic, Passport.js to handle authentication, bcrypt to salt and hash user passwords, and Bootstrap to style the front-end.
+The back-end of this application was crafted using Node.js and the Express framework, proficiently handling all routes and controller logic. We chose EJS as our templating engine for the View, with MongoDB and Mongoose driving our database and Model logic. For authentication, we relied on Passport.js, while bcrypt secured user passwords with salting and hashing. Lastly, Bootstrap was employed to refine the front-end aesthetics.
