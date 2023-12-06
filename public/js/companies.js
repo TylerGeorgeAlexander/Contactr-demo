@@ -4,7 +4,6 @@ Array.from(deleteCompanyBtn).forEach((el) => {
   el.addEventListener("click", deleteCompany);
 });
 
-
 // Location Tool
 async function locate() {
   const nodeId = this.dataset.id;
@@ -34,3 +33,15 @@ async function deleteCompany() {
   }
 }
 
+/* Accordion Toggle */
+
+document.querySelectorAll(".accordion-item").forEach((item) => {
+  item.addEventListener("show.bs.collapse", function () {
+    this.querySelector(".fa-chevron-down").style.display = "none";
+    this.querySelector(".fa-chevron-up").style.display = "inline-block";
+  });
+  item.addEventListener("hide.bs.collapse", function () {
+    this.querySelector(".fa-chevron-down").style.display = "inline-block";
+    this.querySelector(".fa-chevron-up").style.display = "none";
+  });
+});
