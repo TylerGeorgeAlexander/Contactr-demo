@@ -93,6 +93,7 @@
                     placeholder="Company Name"
                     id="companyName"
                     name="companyName"
+                    value="<%= company.companyName ? company.companyName : '' %>"
                     required
                   />
                 </div>
@@ -103,7 +104,7 @@
                 <div class="col col-md-12">
                   <label for="dateAdded">Date Added: </label>
                   <span class="edit-label text-muted"
-                    ><%=company.dateAdded?.toLocaleDateString("en-US")%></span
+                    ><%=company.dateAdded?.toISOString().split('T')[0]%></span
                   >
                 </div>
                 <div class="col col-md-12">
@@ -113,6 +114,7 @@
                     placeholder="Date Added"
                     id="dateAdded"
                     name="dateAdded"
+                    value="<%= company.dateAdded ? company.dateAdded.toISOString().split('T')[0] : '' %>"
                   />
                 </div>
               </div>
@@ -130,6 +132,7 @@
                     placeholder="URL"
                     id="url"
                     name="url"
+                    value="<%= company.url ? company.url : '' %>"
                   />
                 </div>
               </div>
@@ -151,6 +154,7 @@
                     placeholder="Role/Position"
                     id="role"
                     name="role"
+                    value="<%= company.role ? company.role : '' %>"
                   />
                 </div>
               </div>
@@ -170,6 +174,7 @@
                     placeholder="Position URL"
                     id="roleURL"
                     name="roleURL"
+                    value="<%= company.roleURL ? company.roleURL : '' %>"
                   />
                 </div>
               </div>
@@ -178,9 +183,7 @@
               <div class="row m-2">
                 <div class="col col-md-12">
                   <label for="position">Position Type:</label>
-                  <span class="edit-label text-muted"
-                    ><%= company.position %></span
-                  >
+                  <span class="edit-label text-muted"><%= company.position %></span>
                 </div>
                 <div class="col col-md-12">
                   <select
@@ -189,20 +192,20 @@
                     name="position"
                     id="position"
                   >
-                    <option selected value="">Choose position type</option>
-                    <option value="Full-time Local">Full-time Local</option>
-                    <option value="Full-time Remote">Full-time Remote</option>
-                    <option value="Full-time Hybrid">Full-time Hybrid</option>
-                    <option value="Part-time Local">Part-time Local</option>
-                    <option value="Part-time Remote">Part-time Remote</option>
-                    <option value="Part-time Hybrid">Part-time Hybrid</option>
-                    <option value="Contract">Contract</option>
-                    <option value="Internship">Internship</option>
-                    <option value="Seasonal">Seasonal</option>
-                    <option value="Temporary">Temporary</option>
+                    <option value="">Choose position type</option>
+                    <option value="Full-time Local" <%= company.position === 'Full-time Local' ? 'selected' : '' %>>Full-time Local</option>
+                    <option value="Full-time Remote" <%= company.position === 'Full-time Remote' ? 'selected' : '' %>>Full-time Remote</option>
+                    <option value="Full-time Hybrid" <%= company.position === 'Full-time Hybrid' ? 'selected' : '' %>>Full-time Hybrid</option>
+                    <option value="Part-time Local" <%= company.position === 'Part-time Local' ? 'selected' : '' %>>Part-time Local</option>
+                    <option value="Part-time Remote" <%= company.position === 'Part-time Remote' ? 'selected' : '' %>>Part-time Remote</option>
+                    <option value="Part-time Hybrid" <%= company.position === 'Part-time Hybrid' ? 'selected' : '' %>>Part-time Hybrid</option>
+                    <option value="Contract" <%= company.position === 'Contract' ? 'selected' : '' %>>Contract</option>
+                    <option value="Internship" <%= company.position === 'Internship' ? 'selected' : '' %>>Internship</option>
+                    <option value="Seasonal" <%= company.position === 'Seasonal' ? 'selected' : '' %>>Seasonal</option>
+                    <option value="Temporary" <%= company.position === 'Temporary' ? 'selected' : '' %>>Temporary</option>
                   </select>
                 </div>
-              </div>
+              </div>      
             </div>
             <div class="col col-12 col-md-6 col-xl-4">
               <div class="row m-2">
@@ -219,6 +222,7 @@
                     placeholder="Word of Mouth, Job Board, Other"
                     id="source"
                     name="source"
+                    value="<%= company.source ? company.source : '' %>"
                   />
                 </div>
               </div>
@@ -247,6 +251,7 @@
                     placeholder="Name of Contact"
                     id="pocName"
                     name="pocName"
+                    value="<%= company.pointOfContact.name ? company.pointOfContact.name : '' %>"
                   />
                 </div>
               </div>
@@ -266,6 +271,7 @@
                     placeholder="Position of Contact"
                     id="pocPosition"
                     name="pocPosition"
+                    value="<%= company.pointOfContact.position ? company.pointOfContact.position : '' %>"
                   />
                 </div>
               </div>
@@ -285,6 +291,7 @@
                     placeholder="Email of Contact"
                     id="pocEmail"
                     name="pocEmail"
+                    value="<%= company.pointOfContact.email ? company.pointOfContact.email : '' %>"
                   />
                 </div>
               </div>
@@ -302,31 +309,24 @@
             <div class="col col-12 col-md-6 col-xl-4">
               <div class="row m-2">
                 <div class="col col-md-12">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    placeholder="Applied?"
-                    id="applied"
-                    name="applied"
-                    value="yes"
-                  />
+                  <input class="form-check-input" type="checkbox"
+                    id="applied" name="applied" value="yes"
+                  <% if (company.application.applied) { %> checked <%
+                  } %> />
                   <label class="form-check-label" for="applied">Applied?</label>
                   <span class="edit-label text-muted">
-                    <%= company.application.applied?"Yes":"No" %></span
-                  >
+                    <%= company.application.applied ? "Yes" : "No" %>
+                  </span>
                 </div>
               </div>
             </div>
             <div class="col col-12 col-md-6 col-xl-4">
               <div class="row m-2">
                 <div class="col col-md-12">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="coffeeChat"
-                    name="coffeeChat"
-                    value="yes"
-                  />
+                  <input class="form-check-input" type="checkbox"
+                  id="coffeechat" name="coffeechat" value="yes"
+                  <% if (company.application.coffeeChat) { %> checked <%
+                  } %> />
                   <label class="form-check-label" for="coffeeChat"
                     >Coffee Chat?</label
                   ><span class="edit-label text-muted">
@@ -338,13 +338,10 @@
             <div class="col col-12 col-md-6 col-xl-4">
               <div class="row m-2">
                 <div class="col col-md-12">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="saidThanks"
-                    name="saidThanks"
-                    value="yes"
-                  />
+                  <input class="form-check-input" type="checkbox"
+                  id="saidThanks" name="saidThanks" value="yes"
+                  <% if (company.application.saidThanks) { %> checked <%
+                  } %> />
                   <label class="form-check-label" for="saidThanks"
                     >Said Thanks? </label
                   ><span class="edit-label text-muted">
@@ -360,7 +357,7 @@
                   <label for="applyDate">Application Date: </label>
                   <span class="edit-label text-muted"
                     ><%=
-                    company.application.applyDate?.toLocaleDateString("en-US")
+                    company.application.applyDate?.toISOString().split('T')[0]
                     %></span
                   >
                 </div>
@@ -371,6 +368,7 @@
                     placeholder="Date you applied"
                     id="applyDate"
                     name="applyDate"
+                    value="<%= company.application.applyDate ? company.application.applyDate.toISOString().split('T')[0] : '' %>"
                   />
                 </div>
               </div>
@@ -381,7 +379,7 @@
                   <label for="coffeeChatDate">Coffee Chat Date: </label>
                   <span class="edit-label text-muted"
                     ><%=
-                    company.application.coffeeChatDate?.toLocaleDateString("en-US")
+                    company.application.coffeeChatDate?.toISOString().split('T')[0]
                     %></span
                   >
                 </div>
@@ -391,6 +389,7 @@
                     class="form-control"
                     id="coffeeChatDate"
                     name="coffeeChatDate"
+                    value="<%= company.application.coffeeChatDate ? company.application.coffeeChatDate.toISOString().split('T')[0] : '' %>"
                   />
                 </div>
               </div>
@@ -401,7 +400,7 @@
                   <label for="interviewDate">Interview Date: </label>
                   <span class="edit-label text-muted"
                     ><%=
-                    company.application.interviewDate?.toLocaleDateString("en-US")
+                    company.application.interviewDate?.toISOString().split('T')[0]
                     %></span
                   >
                 </div>
@@ -411,6 +410,7 @@
                     class="form-control"
                     id="interviewDate"
                     name="interviewDate"
+                    value="<%= company.application.interviewDate ? company.application.interviewDate.toISOString().split('T')[0] : '' %>"
                   />
                 </div>
               </div>
@@ -421,7 +421,7 @@
                   <label for="followUpDate">Follow-Up Date: </label>
                   <span class="edit-label text-muted"
                     ><%=
-                    company.application.followUpDate?.toLocaleDateString("en-US")
+                    company.application.followUpDate?.toISOString().split('T')[0]
                     %></span
                   >
                 </div>
@@ -431,6 +431,7 @@
                     class="form-control"
                     id="followUpDate"
                     name="followUpDate"
+                    value="<%= company.application.followUpDate ? company.application.followUpDate.toISOString().split('T')[0] : '' %>"
                   />
                 </div>
               </div>
@@ -441,18 +442,18 @@
                 <div class="col col-md-12">
                   <label for="comments">Comments: </label>
                   <span class="edit-label text-muted"
-                    ><%= company.application.comments %></span
+                    ><%= company.comments %></span
                   >
                 </div>
                 <div class="col">
                   <textarea
-                    name="comments"
-                    placeholder="Comments"
-                    id="comments"
-                    class="form-control"
-                    rows="4"
-                    cols="25"
-                  ></textarea>
+                  name="comments"
+                  placeholder="Comments"
+                  id="comments"
+                  class="form-control"
+                  rows="4"
+                  cols="25"
+                ><%= company.comments ? company.comments : '' %></textarea>                
                 </div>
               </div>
             </div>
