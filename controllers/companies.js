@@ -98,8 +98,8 @@ exports.updateCompany = async (req, res) => {
     role,
     roleURL,
     position,
+    email,
     source,
-    pointOfContact,
     name,
     application,
     comments,
@@ -127,9 +127,6 @@ exports.updateCompany = async (req, res) => {
   }
   if (source) {
     filteredBody["source"] = source;
-  }
-  if (JSON.stringify(pointOfContact) !== "{}") {
-    filteredBody["pointOfContact"] = pointOfContact;
   }
   if (name) {
     filteredBody["pointOfContact.name"] = name;
@@ -160,7 +157,6 @@ exports.updateCompany = async (req, res) => {
     } else {
       company = await Company.findOneAndUpdate(
         { _id: req.params.id },
-        // req.body,
         filteredBody,
         {
           new: true,
