@@ -59,9 +59,9 @@
                         </div>
                         <div class="card-body">
                           <div class="row">
-                              <div class="col">
-                                  <h2>Job Description</h2>
-                                  <ul class="list-group list-group-flush">
+                              <div class="col col-12 col-xl-4">
+                                  <h2 class="text-center">Job Description</h2>
+                                  <ul class="list-group list-group-flush text">
                                       <li class="list-group-item">Date Added: <%= company.dateAdded?.toLocaleDateString("en-US") %></li>
                                       <li class="list-group-item">Website: <a href="<%= company.url %>" target="_blank"><%= company.url %></a></li>
                                       <li class="list-group-item">Role: <%= company.role %></li>
@@ -70,15 +70,15 @@
                                       <li class="list-group-item">Source: <%= company.source %></li>
                                   </ul>
                               </div>
-                              <div class="col">
-                                  <h2>Point of Contact</h2>
+                              <div class="col col-12 col-xl-4">
+                                  <h2 class="text-center">Point of Contact</h2>
                                   <ul class="list-group list-group-flush">
                                       <li class="list-group-item">Point of Contact: <%= company.pointOfContact.name %> - <%= company.pointOfContact.position %></li>
                                       <li class="list-group-item">Contact Email: <a href="mailto:<%= company.pointOfContact.email %>"><%= company.pointOfContact.email %></a></li> 
                                   </ul>
                               </div>
-                              <div class="col">
-                                  <h2>Application Status</h2>
+                              <div class="col col-12 col-xl-4">
+                                  <h2 class="text-center">Application Status</h2>
                                   <ul class="list-group list-group-flush">
                                       <li class="list-group-item">Application Status: <span class="<%= company.application.applied ? 'text-success' : 'text-danger' %>"><%= company.application.applied ? "Applied" : "Not Applied" %></span></li>
                                       <li class="list-group-item">Application Date: <%= company.application.applyDate?.toLocaleDateString("en-US") %></li>
@@ -90,7 +90,12 @@
                                   </ul>
                               </div>
                           </div>
-                          <p class="card-text mt-3">Comments: <%= company.comments %></p>
+                          <% if (company.comments) { %>
+                            <div class="text-center mb-4">
+                              <h2>Comments:</h2>
+                              <p class="card-text mt-3"><%= company.comments %></p>
+                            </div>
+                          <% } %>                          
                           <!-- More company details here -->
                           <div class="text-center">
                               <a href="/companies/edit/<%= company._id %>" class="btn btn-secondary m-2">Edit</a>
