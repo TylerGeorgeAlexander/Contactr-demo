@@ -58,39 +58,46 @@
                             </h5>
                         </div>
                         <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                <div>
+                          <div class="row">
+                              <div class="col">
                                   <h2>Job Description</h2>
-                                  <li class="list-group-item">Date Added: <%= company.dateAdded?.toLocaleDateString("en-US") %></li>
-                                  <li class="list-group-item">Website: <a href="<%= company.url %>" target="_blank"><%= company.url %></a></li>
-                                  <li class="list-group-item">Role: <%= company.role %></li>
-                                  <li class="list-group-item">Role URL: <a href="<%= company.roleURL %>" target="_blank"><%= company.roleURL %></a></li>
-                                  <li class="list-group-item">Position Type: <%= company.position %></li>
-                                  <li class="list-group-item">Source: <%= company.source %></li>
-                                </div>
-                                <div>
+                                  <ul class="list-group list-group-flush">
+                                      <li class="list-group-item">Date Added: <%= company.dateAdded?.toLocaleDateString("en-US") %></li>
+                                      <li class="list-group-item">Website: <a href="<%= company.url %>" target="_blank"><%= company.url %></a></li>
+                                      <li class="list-group-item">Role: <%= company.role %></li>
+                                      <li class="list-group-item">Role URL: <a href="<%= company.roleURL %>" target="_blank"><%= company.roleURL %></a></li>
+                                      <li class="list-group-item">Position Type: <%= company.position %></li>
+                                      <li class="list-group-item">Source: <%= company.source %></li>
+                                  </ul>
+                              </div>
+                              <div class="col">
                                   <h2>Point of Contact</h2>
-                                  <li class="list-group-item">Point of Contact: <%= company.pointOfContact.name %> - <%= company.pointOfContact.position %></li>
-                                  <li class="list-group-item">Contact Email: <a href="mailto:<%= company.pointOfContact.email %>"><%= company.pointOfContact.email %></a></li> 
-                                </div>
-                                <div>
+                                  <ul class="list-group list-group-flush">
+                                      <li class="list-group-item">Point of Contact: <%= company.pointOfContact.name %> - <%= company.pointOfContact.position %></li>
+                                      <li class="list-group-item">Contact Email: <a href="mailto:<%= company.pointOfContact.email %>"><%= company.pointOfContact.email %></a></li> 
+                                  </ul>
+                              </div>
+                              <div class="col">
                                   <h2>Application Status</h2>
-                                  <li class="list-group-item">Application Status: <span class="<%= company.application.applied ? 'text-success' : 'text-danger' %>"><%= company.application.applied ? "Applied" : "Not Applied" %></span></li>
-                                  <li class="list-group-item">Application Date: <%= company.application.applyDate?.toLocaleDateString("en-US") %></li>
-                                  <li class="list-group-item">Coffee Chat: <span class="<%= company.application.coffeeChat ? 'text-success' : 'text-danger' %>"><%= company.application.coffeeChat ? "Yes" : "No" %></span></li>
-                                  <li class="list-group-item">Coffee Chat Date: <%= company.application.coffeeChatDate?.toLocaleDateString("en-US") %></li>
-                                  <li class="list-group-item">Said Thanks: <span class="<%= company.application.saidThanks ? 'text-success' : 'text-danger' %>"><%= company.application.saidThanks ? "Yes" : "No" %></span></li>
-                                  <li class="list-group-item">Interview Date: <%= company.application.interviewDate?.toLocaleDateString("en-US") %></li>
-                                  <li class="list-group-item">Follow-Up Date: <%= company.application.followUpDate?.toLocaleDateString("en-US") %></li>
-                                </div>
-                            </ul>
-                            <p class="card-text mt-3">Comments: <%= company.comments %></p>
-                            <!-- More company details here -->
-                            <div class="text-center">
-                                <a href="/companies/edit/<%= company._id %>" class="btn btn-secondary m-2">Edit</a>
-                                <button class="del-company btn btn-danger m-2" data-id="<%= company._id %>">Delete</button>
-                            </div>
-                        </div>
+                                  <ul class="list-group list-group-flush">
+                                      <li class="list-group-item">Application Status: <span class="<%= company.application.applied ? 'text-success' : 'text-danger' %>"><%= company.application.applied ? "Applied" : "Not Applied" %></span></li>
+                                      <li class="list-group-item">Application Date: <%= company.application.applyDate?.toLocaleDateString("en-US") %></li>
+                                      <li class="list-group-item">Coffee Chat: <span class="<%= company.application.coffeeChat ? 'text-success' : 'text-danger' %>"><%= company.application.coffeeChat ? "Yes" : "No" %></span></li>
+                                      <li class="list-group-item">Coffee Chat Date: <%= company.application.coffeeChatDate?.toLocaleDateString("en-US") %></li>
+                                      <li class="list-group-item">Said Thanks: <span class="<%= company.application.saidThanks ? 'text-success' : 'text-danger' %>"><%= company.application.saidThanks ? "Yes" : "No" %></span></li>
+                                      <li class="list-group-item">Interview Date: <%= company.application.interviewDate?.toLocaleDateString("en-US") %></li>
+                                      <li class="list-group-item">Follow-Up Date: <%= company.application.followUpDate?.toLocaleDateString("en-US") %></li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <p class="card-text mt-3">Comments: <%= company.comments %></p>
+                          <!-- More company details here -->
+                          <div class="text-center">
+                              <a href="/companies/edit/<%= company._id %>" class="btn btn-secondary m-2">Edit</a>
+                              <button class="del-company btn btn-danger m-2" data-id="<%= company._id %>">Delete</button>
+                          </div>
+                      </div>
+                      
                     </div>
                 </div>
             </div>
